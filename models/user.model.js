@@ -33,9 +33,9 @@ class UserModel {
         return user;
     }
 
-    async updateUser(id, { property, value }) {
+    async updateUser(id, updateFields) {
         await this.init();
-        const result = await this.collection.updateOne({ _id: new mongodb.ObjectId(id) }, { $set: { property: value } });
+        const result = await this.collection.updateOne({ _id: new mongodb.ObjectId(id) }, { $set: updateFields });
         return result;
     }
 

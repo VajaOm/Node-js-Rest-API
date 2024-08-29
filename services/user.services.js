@@ -15,8 +15,15 @@ class UserServices {
         return userModel.getUserById(userId);
     }
 
-    async updateUser(id, { property, value }) {
-        return userModel.getUserById(id, { property, value });
+    async updateUser(id, updateUserData) {
+
+        const updateFields = {};
+
+        for(let [property, value] of Object.entries(updateUserData)) {
+            updateFields[property] = value;
+        }
+
+        return userModel.getUserById(id, updateFields);
     }
 
     async deleteUser(id) {
