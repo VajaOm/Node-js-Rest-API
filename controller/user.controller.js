@@ -56,8 +56,8 @@ class UserController {
         }
     }
 
-    async updateUser(req, res) {
-        const id = req.url.split('/')[2];
+    async updateUser(req, res, params) {
+        const id = params;
         try {
 
             const updateUserData = await parseJson(req);
@@ -65,7 +65,7 @@ class UserController {
             const result = await userServices.updateUser(id, updateUserData);
 
             res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify, result);
+            res.end(JSON.stringify(result));
 
         } catch (error) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
