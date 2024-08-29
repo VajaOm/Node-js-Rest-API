@@ -73,15 +73,15 @@ class UserController {
         }
     }
 
-    async deleteUser(req, res) {
-        const id = req.url.split('/')[2];
+    async deleteUser(req, res, params) {
+        const id = params;
 
         try {
 
             const result = await userServices.deleteUser(id);
 
             res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSO.stringify(result));
+            res.end(JSON.stringify(result));
 
         } catch (error) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
