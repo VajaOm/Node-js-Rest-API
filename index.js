@@ -1,6 +1,7 @@
 const http = require('http');
 const dotenv = require('dotenv');
 const connectDb = require('./config/db.js');
+const handleRequest = require('./routes/user.routes.js');
 
 dotenv.config();
 
@@ -8,12 +9,9 @@ const startServer = async () => {
     try {
         await connectDb();
 
-        const server = http.createServer((req, res) => {
-            res.write('Route Accessed');
-            res.end();
-        });
+        const server = http.createServer(handleRequest);
 
-        const PORT = process.env.PORT || 3000;;
+        const PORT = process.env.PORT || 3000;
 
         server.listen(PORT, () => {
             console.log(`server running on ${PORT}`);
