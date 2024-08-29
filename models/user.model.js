@@ -10,14 +10,16 @@ class UserModel {
     //init() function run if the there is no collection
     async init() {
         if (!this.collection) {
-            const db = new connectDb();
-            this.collection = db.collection('users');
+            const db = await connectDb();
+            this.collection = await db.collection('users');
         }
     }
 
     async addUser(user) {
         await this.init();
+        console.log("collection : ",this.collection);
         const result = await this.collection.insertOne(user);
+        console.log(result);
         return result;
     }
 

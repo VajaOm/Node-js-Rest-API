@@ -8,7 +8,13 @@ const routes = {
     [`GET ${API_ROUTE}/getallusers`]: userController.getAllUsers,
     [`GET ${API_ROUTE}/getuserbyid/:id`]: userController.getUserById,
     [`PUT ${API_ROUTE}/updateuser/:id`]: userController.updateUser,
-    [`DELETE ${API_ROUTE}/deleteuser/:id`]: userController.deleteUser
+    [`DELETE ${API_ROUTE}/deleteuser/:id`]: userController.deleteUser,
+
+    //home route
+    'GET /': (req, res) => {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Welcome to the User API' }));
+    }
 };
 
 const handleRequest = async (req, res) => {

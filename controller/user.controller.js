@@ -10,7 +10,8 @@ class UserController {
 
             const user = await parseJson(req);
             const insertedUser = await userServices.addUser(user);
-            res.writeHead(201, { 'Content-Type': 'application/json' });
+            console.log(insertedUser);
+            res.writeHead(201, { 'Content-Type': 'application/x-www-form-urlencoded' });
             res.end(JSON.stringify(insertedUser))
 
         } catch (error) {
