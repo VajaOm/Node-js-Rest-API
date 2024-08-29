@@ -34,13 +34,13 @@ class UserController {
     }
 
 
-    async getUserById(req, res) {
+    async getUserById(req, res, params) {
 
-        const userId = req.url.split('/')[2];
+        const userId = params;
 
         try {
 
-            const user = await userServices.getUserById(userId);
+            const user = await userServices.getUser(userId);
             if (user) {
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify(user));
